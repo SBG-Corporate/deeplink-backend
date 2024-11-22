@@ -1,0 +1,10 @@
+# created by virtualenv automatically
+.git
+node_modules
+package-lock.json
+.vercel
+.env
+.INICIA.bat
+.TEST.bat
+*.7z
+.eslintrc

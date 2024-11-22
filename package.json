@@ -1,0 +1,60 @@
+{
+  "name": "deeplink-backend",
+  "version": "0.1.0",
+  "description": "DeepLink Backend - An innovative gamified social network leveraging blockchain technology.",
+  "license": "MIT",
+  "author": "SBG Corporate https://sbgworld.io/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/deep-link-front.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "mocha",
+    "testFin": "mocha --exit",
+    "testParte1": "mocha test/1-root.test.js --exit",
+    "testParte2": "mocha test/2-login.test.js --exit",
+    "testParte3": "mocha test/3-user.test.js --exit",
+    "testParte4": "mocha test/4-gestion.test.js --exit",
+    "testParte5": "mocha test/5-grupo.test.js --exit",
+    "testParte6": "mocha test/6-file.test.js --exit"
+  },
+  "devDependencies": {
+    "chai": "4.3.7",
+    "mocha": "10.2.0",
+    "nodemon": "^3.0.1",
+    "standard": "17.1.0",
+    "supertest": "6.3.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity": "3.379.1",
+    "@aws-sdk/client-dynamodb": "3.379.1",
+    "@aws-sdk/client-s3": "^3.418.0",
+    "@aws-sdk/credential-provider-cognito-identity": "3.379.1",
+    "@aws-sdk/util-dynamodb": "3.379.1",
+    "cors": "2.8.5",
+    "crypto": "1.0.1",
+    "crypto-js": "^4.2.0",
+    "dotenv": "16.3.1",
+    "express": "4.18.2",
+    "express-mongo-sanitize": "2.2.0",
+    "express-rate-limit": "6.8.1",
+    "express-validator": "7.0.1",
+    "helmet": "7.0.0",
+    "jsonwebtoken": "9.0.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.4",
+    "xss-clean": "0.1.4"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/standard/eslintrc.json",
+    "rules": {
+      "indent": [
+        "error",
+        4
+      ]
+    }
+  }
+}

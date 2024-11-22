@@ -1,0 +1,31 @@
+{
+	"version": 2,
+	"regions": [
+		"cdg1"
+	],
+	"builds": [
+		{
+			"src": "index.js",
+			"use": "@vercel/node"
+		}
+	],
+	"routes": [
+		{
+			"src": "/(.*)",
+			"methods": [
+				"GET",
+				"POST",
+				"OPTIONS",
+				"DELETE",
+				"PATCH",
+				"PUT"
+			],
+			"headers": {
+				"Access-Control-Allow-Origin": "*",
+				"Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+				"Access-Control-Allow-Credentials": "true"
+			},
+			"dest": "/index.js"
+		}
+	]
+}

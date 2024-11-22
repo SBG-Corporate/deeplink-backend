@@ -1,0 +1,32 @@
+const express = require('express')
+const router = express.Router()
+const UserController = require('../Controllers/UserController')
+const RateLimiter = require('../Middleware/RateLimitMiddleware')
+const { verifyToken, onlyUserActive, onlyAdmin } = require('../Middleware/AuthMiddleware')
+const { validaDatos, validarId, validarTexto, validarNumero } = require('../Helper/validaciones')
+
+router.use(RateLimiter(1000, 4))
+
+router.post('/saldo/:_id', validarId(), validarNumero('saldo'), validaDatos, onlyUserActive, UserController.UserAddSaldo)
+router.use(verifyToken)
+router.get('/', UserController.UserGet)
+router.patch('/', UserController.UserUpdate)
+router.delete('/', UserController.UserDelete)
+router.get('/alias', UserController.UserGetAllAlias)
+router.get('/alias/:alias', validarTexto('alias', 'param'), validaDatos, UserController.UserCheckAlias)
+router.get('/amigo', onlyUserActive, UserController.GetAmigo)
+router.post('/amigo/:_id', validarId(), validaDatos, onlyUserActive, UserController.UserAddAmigo)
+router.delete('/amigo/:_id', validarId(), validaDatos, onlyUserActive, UserController.UserDeleteAmigo)
+router.get('/getMyUserExtended', UserController.GetMyUserExtended)
+router.get('/getUserById/:_id', validarId(), validaDatos, UserController.GetUserById)
+router.get('/getAllUsers', onlyAdmin, UserController.GetAllUsersByAdmin)
+router.post('/getUsersByIds', validaDatos, UserController.GetUsersByIds)
+router.post('/incrementViews/:_id', validarId(), UserController.IncrementViewsInUser)
+router.post('/toggleMsgToFavorites/:_id', validarId(), validaDatos, UserController.ToggleMsgToFavorites)
+router.post('/createNewUserByAdmin', onlyAdmin, UserController.CreateNewUserByAdmin)
+router.delete('/deleteUserByAdmin/:_id', onlyAdmin, UserController.DeleteUserByAdmin)
+router.patch('/updateUserByAdmin/:_id', onlyAdmin, UserController.UpdateUserByAdmin)
+router.post('/toggleUserVerification/:_id', validarId(), onlyAdmin, UserController.ToggleUserVerificationByAdmin)
+
+
+module.exports = router
